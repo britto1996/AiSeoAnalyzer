@@ -1,0 +1,58 @@
+name: AI SEO Analyzer CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Build AI SEO Analyzer
+        run: npm run build
+
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: ci
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_AI_SEO_ANALYZER_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build AI SEO Analyzer for Vercel
+        run: vercel build --prod --token=${{ secrets.VERCEL_AI_SEO_ANALYZER_TOKEN }}
+
+      - name: Deploy AI SEO Analyzer to Vercel Production
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_AI_SEO_ANALYZER_TOKEN }}
