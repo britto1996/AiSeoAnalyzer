@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const [isRegisterState] = useState("register");
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
