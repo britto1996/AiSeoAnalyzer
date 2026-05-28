@@ -57,28 +57,26 @@ export function AppProvider({children}: {children: ReactNode}) {
         return config;
     })
 
-    const loadUser = async () => {
-        if (!token) {
-            setLoading(false);
-            return;
-        }
-        try {
-            const { data } = await api.get("/api/auth/user");
-            if (data.success) {
-                setUser(data.user);
-            }
-        } catch (error) {
-            localStorage.removeItem("token");
-            setToken(null);
-            setUser(null);
-        }
-        setLoading(false);
-    }
-
     useEffect(() => {
+        const loadUser = async () => {
+            if (!token) {
+                setLoading(false);
+                return;
+            }
+            try {
+                const { data } = await api.get("/api/auth/user");
+                if (data.success) {
+                    setUser(data.user);
+                }
+            } catch {
+                localStorage.removeItem("token");
+                setToken(null);
+                setUser(null);
+            }
+            setLoading(false);
+        };
         loadUser();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [token]);
 
     const login = async (email: string, password: string) => {
         try {
