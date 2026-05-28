@@ -11,6 +11,16 @@ interface User {
     analysisCount?: number;
 }
 
+interface ErrorResponse {
+    error: {
+        response: {
+            data: {
+                message: string;
+            }
+        }
+    }
+}
+
 interface AppContextType {
     user: User | null;
     token: string | null;
@@ -79,8 +89,8 @@ export function AppProvider({children}: {children: ReactNode}) {
                 return {success: true};
             }
             return {success: false, message: res.data.message || "Login failed"};
-        } catch (error: any) {
-            return {success: false, message: error.response?.data?.message || "An error occurred during login"};
+        } catch (error: unknown) {
+            return {success: false, message: (error as ErrorResponse)?.error.response?.data?.message || "An error occurred during login"};
         }
     }
 
@@ -94,8 +104,8 @@ export function AppProvider({children}: {children: ReactNode}) {
                 return {success: true};
             }
             return {success: false, message: res.data.message || "Registration failed"};
-        } catch (error: any) {
-            return {success: false, message: error.response?.data?.message || "An error occurred during registration"};
+        } catch (error: unknown) {
+            return {success: false, message: (error as ErrorResponse)?.error.response?.data?.message || "An error occurred during registration"};
         }
     }
 
