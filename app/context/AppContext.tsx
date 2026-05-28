@@ -77,7 +77,8 @@ export function AppProvider({children}: {children: ReactNode}) {
 
     useEffect(() => {
         loadUser();
-    }, [loadUser]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const login = async (email: string, password: string) => {
         try {
