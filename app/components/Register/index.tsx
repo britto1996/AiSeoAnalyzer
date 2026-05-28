@@ -20,8 +20,7 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    let result;
-    result = await register(name, email, password);
+    const result = await register(name, email, password);
     if (result?.success) {
       router.replace(paths.dashboard);
     } else {

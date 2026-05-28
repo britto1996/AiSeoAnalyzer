@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const [isLoginState] = useState("login");
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,10 +19,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    let result;
-    if (isLoginState === "login") {
-      result = await login(email, password);
-    }
+    const result = await login(email, password);
     if (result?.success) {
       router.replace(paths.dashboard);
     } else {
