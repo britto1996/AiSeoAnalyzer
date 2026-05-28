@@ -8,12 +8,10 @@ const Hero = () => {
     <div className="flex-1 flex flex-col-reverse gap-10 md:flex-row md:items-center max-md:justify-center px-4 lg:ml-10 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0">
       <div className="max-md:text-center md:flex-1">
         <h5 className="text-3xl md:text-6xl/[76px] font-semibold max-w-xl bg-linear-to-r from-slate-900 to-[#6D8FE4] text-transparent bg-clip-text">
-          Boost Your Website with AI-Powered SEO Insights
+          Analyze & Boost Your SEO Rankings
         </h5>
         <p className="text-sm md:text-base max-w-lg mt-6 max-md:px-2 text-slate-600">
-          Unlock the full potential of your website with our AI-powered SEO
-          analyzer. Get actionable insights, optimize your content, and improve
-          your search engine rankings effortlessly.
+          Get instant AI-powered SEO audits for any website. Uncover hidden issues, optimize performance, and outrank your competition.
         </p>
         <div className="flex items-center gap-4 mt-6 max-md:justify-center">
           <Link href={paths.login}>

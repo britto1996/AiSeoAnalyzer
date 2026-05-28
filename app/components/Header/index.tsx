@@ -1,14 +1,19 @@
 "use client";
 
+import { paths } from "@/app/constants/paths";
+import { useApp } from "@/app/context/AppContext";
 import Image from "next/image";
 import { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {user, loading} = useApp();
 
   const closeNavbar = () => {
     setIsMenuOpen(false);
   };
+
+  console.log(user, loading);
 
   return (
     <nav className="flex items-center justify-between p-4 md:px-16 lg:px-24 xl:px-32 border-b border-white/25 w-full">
@@ -27,19 +32,16 @@ const Header = () => {
         className={`max-md:absolute max-md:h-full max-md:z-50 max-md:w-full max-md:top-0 transition-all duration-300 max-md:backdrop-blur max-md:bg-white/70 max-md:text-base flex flex-col md:flex-row items-center justify-center gap-8 font-medium ${isMenuOpen ? "max-md:left-0" : "max-md:-left-full"}`}
       >
         <li onClick={closeNavbar} className="hover:text-slate-500">
-          <a href="#">Home</a>
+          <a href={user !== null ? paths.dashboard : paths.login}>Dashboard</a>
         </li>
         <li onClick={closeNavbar} className="hover:text-slate-500">
-          <a href="#">Services</a>
+          <a href="#">Analyze</a>
         </li>
         <li onClick={closeNavbar} className="hover:text-slate-500">
-          <a href="#">Reviews</a>
+          <a href="#">Rank Tracker</a>
         </li>
         <li onClick={closeNavbar} className="hover:text-slate-500">
-          <a href="#">Pricing</a>
-        </li>
-        <li onClick={closeNavbar} className="hover:text-slate-500">
-          <a href="#">Docs</a>
+          <a href="#">History</a>
         </li>
 
         <button

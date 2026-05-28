@@ -1,10 +1,13 @@
 import Register from '../components/Register'
+import { AppProvider } from '../context/AppContext'
 
 const RegisterPage = () => {
   return (
-    <div className="flex h-175 w-full">
-      <Register />
-    </div>
+    <AppProvider>
+      <div className="flex h-175 w-full">
+        <Register />
+      </div>
+    </AppProvider>
   )
 }
 

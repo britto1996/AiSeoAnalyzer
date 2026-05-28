@@ -1,10 +1,13 @@
 import Login from '../components/Login'
+import { AppProvider } from '../context/AppContext'
 
 const LoginPage = () => {
   return (
-    <div className="flex h-175 w-full">
-        <Login />
-    </div>
+    <AppProvider>
+      <div className="flex h-175 w-full">
+          <Login />
+      </div>
+    </AppProvider>
   )
 }
 
