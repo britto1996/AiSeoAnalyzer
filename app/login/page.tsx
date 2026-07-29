@@ -4,7 +4,7 @@ import { AppProvider } from '../context/AppContext'
 const LoginPage = () => {
   return (
     <AppProvider>
-      <div className="flex h-175 w-full">
+      <div className="flex min-h-screen w-full bg-linear-to-r from-green-700 to-blue-900">
           <Login />
       </div>
     </AppProvider>

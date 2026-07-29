@@ -44,43 +44,43 @@ const Register = () => {
       </div>
       <div className="w-full flex flex-col items-center justify-center">
         <form onSubmit={handleSubmit} className="md:w-96 w-80 flex flex-col items-center justify-center">
-          <h2 className="text-4xl text-gray-900 font-medium">Sign up</h2>
-          <p className="text-sm text-gray-500/90 mt-3">
+          <h2 className="text-4xl text-white font-medium">Sign up</h2>
+          <p className="text-sm text-white/90 mt-3">
             Create a new account to get started
           </p>
           <div className="flex items-center gap-4 w-full my-5">
-            <div className="w-full h-px bg-gray-300/90"></div>
-            <p className="w-full text-nowrap text-sm text-gray-500/90">
+            <div className="w-full h-px bg-white/90"></div>
+            <p className="w-full text-nowrap text-sm text-white/90">
               sign up with email, name and password
             </p>
-            <div className="w-full h-px bg-gray-300/90"></div>
+            <div className="w-full h-px bg-white/90"></div>
           </div>
-          <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-            <User />
+          <div className="flex items-center w-full bg-transparent border border-white/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
+            <User color="white" />
             <input
               type="text"
               placeholder="Full Name"
-              className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
+              className="bg-transparent text-white/80 placeholder-white/80 outline-none text-sm w-full h-full"
               required
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="flex mt-6 items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-            <Mail />
+          <div className="flex mt-6 items-center w-full bg-transparent border border-white/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
+            <Mail color="white" />
             <input
               type="email"
               placeholder="Email id"
-              className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
+              className="bg-transparent text-white/80 placeholder-white/80 outline-none text-sm w-full h-full"
               required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-            <Key />
+          <div className="flex items-center mt-6 w-full bg-transparent border border-white/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
+            <Key  color="white" />
             <input
               type={isShowPassword ? "text" : "password"}
               placeholder="Password"
-              className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
+              className="bg-transparent text-white/80 placeholder-white/80 outline-none text-sm w-full h-full"
               required
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -91,7 +91,7 @@ const Register = () => {
               />
             ) : (
               <Eye
-                className="mr-4 cursor-pointer"
+                className="mr-4 cursor-pointer text-white"
                 onClick={() => setIsShowPassword(true)}
               />
             )}
@@ -102,7 +102,7 @@ const Register = () => {
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
-          <p className="text-gray-500/90 text-sm mt-4">
+          <p className="text-white/90 text-sm mt-4">
             Already have an account?{" "}
             <a
               className="text-indigo-400 hover:underline"

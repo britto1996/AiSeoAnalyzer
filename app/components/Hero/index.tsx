@@ -4,6 +4,7 @@ import { heroImages } from "@/app/constants/heroImages";
 import Image from "next/image";
 import { useState } from "react";
 import SearchBox from "../SearchBox";
+import { Search } from "lucide-react";
 
 const Hero = () => {
   const [input, setInput] = useState("");
@@ -66,25 +67,29 @@ const Hero = () => {
             />
           </div>
         </span>
-        <span className="relative bg-linear-to-r from-[#764de1] to-indigo-600 bg-clip-text text-transparent">
-          {" " }with
-        </span>{" "}
-        AI-Powered Audits
       </h1>
       <p className="max-w-xl text-center text-base my-7">
         Get instant AI-powered SEO audits for any website. Uncover hidden
         issues, optimize performance, and outrank your competition.
       </p>
-      <SearchBox
-        onSubmitHandler={(e) => {
-          e.preventDefault();
-          console.log(input);
-        }}
-        input={input}
-        setInput={setInput}
-        placeholder="Enter your website URL"
-        buttonTxt="Analyze"
-      />
+      <div className="flex items-center justify-center w-full">
+        <SearchBox
+          onSubmitHandler={(e) => {
+            e.preventDefault();
+            console.log(input);
+          }}
+          input={input}
+          setInput={setInput}
+          placeholder="Enter your website URL (eg. www.example.com)"
+          buttonTxt="Analyze"
+          icon={<Search size={20} className="text-blue-500" />}
+        />
+      </div>
+      <div>
+        <p className="text-sm max-w-xl text-center text-gray-800 mt-4">
+          No credit card required. Start your free trial today!
+        </p>
+      </div>
     </div>
   );
 };

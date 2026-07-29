@@ -4,7 +4,7 @@ import { AppProvider } from '../context/AppContext'
 const RegisterPage = () => {
   return (
     <AppProvider>
-      <div className="flex h-175 w-full">
+      <div className="flex min-h-screen w-full bg-linear-to-r from-green-700 to-blue-900">
         <Register />
       </div>
     </AppProvider>
