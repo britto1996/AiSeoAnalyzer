@@ -1,13 +1,23 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
+"use client";
+
+import { useState } from "react";
+import HeroLayOut from "./components/Hero/HeroLayout";
+import SideBar from "./components/SideBar";
 import { AppProvider } from "./context/AppContext";
+import SideBarList from "./components/SideBar/SideBarList";
+import Pricing from "./components/Pricing";
 
 export default function Home() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [sideMenus, setSideMenus] = useState(SideBarList)
   return (
     <AppProvider>
-      <section className="min-h-screen flex flex-col bg-[url('https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/bg-with-grid.png')] bg-cover bg-center bg-no-repeat text-slate-800 text-sm">
-        <Header />
-        <Hero />
+      <section className="min-h-screen bg-indigo-900">
+        <SideBar isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} sideMenus={sideMenus} />
+        {isDrawerOpen && (
+          <Pricing />
+        )}
+        <HeroLayOut isDrawerOpen={isDrawerOpen} />
       </section>
     </AppProvider>  
   );

@@ -1,15 +1,10 @@
 "use client";
 
 import { paths } from "@/app/constants/paths";
-import { useApp } from "@/app/context/AppContext";
-import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useApp();
   const router = useRouter();
 
   const navigateToLogin = () => {
@@ -21,13 +16,12 @@ const Header = () => {
       <div className="fixed left-0 top-0 right-0 z-100 flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-2 border-b border-gray-300 bg-white transition-all">
         <a href="#">
           <Image
-            unoptimized
             src="/logo/seo_rank_gif.gif"
             alt="Site Name Logo"
             width={64}
             height={64}
             loading="eager"
-            className="object-contain"
+            className="w-24 h-24"
           />
         </a>
         <div className="flex justify-end">
