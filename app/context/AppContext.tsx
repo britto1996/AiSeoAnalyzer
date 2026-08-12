@@ -70,27 +70,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return config;
   });
 
-  const loadUser = async () => {
+  useEffect(() => {
     if (!token) {
       setLoading(false);
       return;
     }
-    try {
-      const { data } = await api.get("/api/auth/user");
-      if (data.success) {
-        setUser(data.user);
-      }
-    } catch {
+    let cancelled = false;
+    api.get("/api/auth/user").then(({ data }) => {
+      if (cancelled) return;
+      if (data.success) setUser(data.user);
+      setLoading(false);
+    }).catch(() => {
+      if (cancelled) return;
       localStorage.removeItem("token");
       setToken(null);
       setUser(null);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    loadUser();
-  }, [token, api]);
+      setLoading(false);
+    });
+    return () => { cancelled = true; };
+  }, [token]);
 
   const login = async (email: string, password: string) => {
     try {
@@ -106,7 +104,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       }
       toast.success(res.data.message || "Login successful");
       return { success: false, message: res.data.message || "Login failed" };
-    } catch (error) {
+    } catch {
       return {
         success: false,
         message: "Login failed. Please check your email and password.",
@@ -131,7 +129,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         success: false,
         message: res.data.message || "Registration failed",
       };
-    } catch (error) {
+    } catch {
       return {
         success: false,
         message: "An error occurred during registration",
