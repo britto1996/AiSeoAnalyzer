@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import RankList from './RankList'
 import { Trash } from 'lucide-react';
 
@@ -11,8 +11,8 @@ const SeoRankList = ({ seeMore, setSeeMore }: { seeMore: { prev: number; next: n
                 return (
                     <div key={rank?._id} className="flex-col flex cursor-pointer text-ellipsis text-nowrap">
                         <span className="flex gap-2 text-ellipsis text-nowrap">
-                            <button className="flex cursor-pointer justify-between items-center hover:bg-linear-to-r hover:from-indigo-500 hover:to-yellow-700 rounded-l-2xl rounded-r-2xl w-full p-2 mr-2">
-                                <span className="bg-linear-to-r from-indigo-500 to-yellow-700 mr-2 rounded-full px-4 py-2 text-xs text-white">
+                            <button className="flex cursor-pointer justify-between items-center hover:bg-linear-to-r hover:from-green-700 hover:to-blue-900 rounded-l-2xl rounded-r-2xl w-full p-2 mr-2">
+                                <span className="bg-linear-to-r from-green-700 to-blue-900 mr-2 rounded-full px-4 py-2 text-xs text-white">
                                     {rank?.score}%
                                 </span>
                                 <span className="text-xs text-white">{rank?.title.length > 16 ? rank?.title.slice(0, 16) + "..." : rank?.title}</span>

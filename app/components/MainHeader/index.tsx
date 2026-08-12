@@ -1,12 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { LayoutDashboard, Search, Shell, History, X, LogOut } from "lucide-react";
 import { useState } from "react";
 
 const MainHeader = () => {
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (

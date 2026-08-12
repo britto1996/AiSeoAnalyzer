@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Eye, EyeOff, Key, Mail } from "lucide-react";
+import { Eye, EyeOff, Key, Mail, Loader } from "lucide-react";
 import { paths } from "@/app/constants/paths";
 import { useState } from "react";
 import { useApp } from "@/app/context/AppContext";
@@ -13,7 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const {login} = useApp();
+  const { login } = useApp();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,13 +21,14 @@ const Login = () => {
     setLoading(true);
     const result = await login(email, password);
     if (result?.success) {
-      router.replace(paths.dashboard);
+      setLoading(false);
+      router.replace(paths.home);
     } else {
       toast.error(result?.message || "Login failed");
+      setLoading(false);
     }
     setLoading(false);
   };
-
 
   return (
     <>
@@ -42,7 +43,10 @@ const Login = () => {
         />
       </div>
       <div className="w-full flex flex-col items-center justify-center">
-        <form onSubmit={handleSubmit} className="md:w-96 w-80 flex flex-col items-center justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="md:w-96 w-80 flex flex-col items-center justify-center"
+        >
           <h2 className="text-4xl text-white font-medium">Sign in</h2>
           <p className="text-sm text-white/90 mt-3">
             Welcome back! Please sign in to continue
@@ -89,7 +93,13 @@ const Login = () => {
             type="submit"
             className="mt-8 cursor-pointer w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
           >
-            {loading ? "Loading..." : "Login"}
+            {loading ? (
+              <div className="flex justify-center items-center ml-auto mr-auto gap-2">
+                <Loader className="animate-spin" />
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
           <p className="text-white/90 text-sm mt-4">
             Don’t have an account?{" "}

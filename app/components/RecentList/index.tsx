@@ -1,10 +1,10 @@
 import React from "react";
 import RankList from "../SeoRankList/RankList";
 import { Trash } from "lucide-react";
+import CircularProgressBar from "../CircularProgress";
 
 const RecentList = ({
   seeMore,
-  setSeeMore,
   isDrawerOpen,
 }: {
   seeMore: { prev: number; next: number };
@@ -21,13 +21,8 @@ const RecentList = ({
             key={rank?._id}
             className="bg-amber-50 hover:shadow-lg hover:border-amber-600 hover:cursor-pointer hover:border-l-4 rounded-md"
           >
-            <div className="flex flex-col gap-2 bg-linear-to-r from-indigo-500 to-yellow-700 px-4 py-2">
-              <p className="text-sm text-yellow-500 text-center font-bold">
-                Rank Score
-              </p>
-              <p className="text-2xl text-yellow-500 text-center font-bold">
-                {rank?.score}%
-              </p>
+            <div className="flex flex-col items-center justify-center gap-2 bg-linear-to-r from-green-700 to-blue-900 px-4 py-4">
+            <CircularProgressBar title="Rank Score" score={rank?.score} />
             </div>
             <div className="mt-2 flex justify-between items-center">
               <p className="text-sm text-black font-medium text-nowrap truncate w-28 text-ellipsis m-2">
