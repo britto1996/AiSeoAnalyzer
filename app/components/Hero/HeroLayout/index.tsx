@@ -7,7 +7,6 @@ import { GridIcon, HomeIcon } from "lucide-react";
 import HeroSearchLayout from "../HeroSearchLayout";
 import GridTemplate from "../../GridTemplate";
 import HeaderList from "../../Header/HeaderList";
-import AboutTitle from "../AboutTitle";
 import RecentList from "../../RecentList";
 import RankList from "../../SeoRankList/RankList";
 
@@ -73,9 +72,6 @@ const HeroLayOut = ({ isDrawerOpen }: { isDrawerOpen: boolean }) => {
         </div>
       )}
       </div>
-      {/* <div className="mt-4 flex max-w-[50%] mx-auto relative">
-        <AboutTitle subtitle="Get instant AI-powered SEO audits for any website. Uncover hidden issues, optimize performance, and outrank your competition." />
-      </div> */}
     </div>
   );
 };

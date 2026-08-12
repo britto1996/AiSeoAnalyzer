@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Eye, EyeOff, Key, Mail, User } from "lucide-react";
+import { Eye, EyeOff, Key, Loader, Mail, User } from "lucide-react";
 import { paths } from "@/app/constants/paths";
 import { useState } from "react";
 import { useApp } from "@/app/context/AppContext";
@@ -13,7 +13,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {register} = useApp();
+  const { register } = useApp();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -22,19 +22,19 @@ const Register = () => {
     setLoading(true);
     const result = await register(name, email, password);
     if (result?.success) {
-      router.replace(paths.dashboard);
+      setLoading(false);
+      router.replace(paths.home);
     } else {
-      toast.error(result?.message || "Registration failed");
+      console.error(result?.message || "Registration failed");
     }
     setLoading(false);
   };
 
-
   return (
     <>
-      <div className="w-full hidden md:inline-block">
+      <div className="w-full hidden md:inline-block m-auto">
         <Image
-          className="h-full"
+          objectFit="cover"
           alt="Register Image"
           src="/logo/seo_rank_gif.gif"
           width={500}
@@ -43,7 +43,10 @@ const Register = () => {
         />
       </div>
       <div className="w-full flex flex-col items-center justify-center">
-        <form onSubmit={handleSubmit} className="md:w-96 w-80 flex flex-col items-center justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="md:w-96 w-80 flex flex-col items-center justify-center"
+        >
           <h2 className="text-4xl text-white font-medium">Sign up</h2>
           <p className="text-sm text-white/90 mt-3">
             Create a new account to get started
@@ -76,7 +79,7 @@ const Register = () => {
             />
           </div>
           <div className="flex items-center mt-6 w-full bg-transparent border border-white/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-            <Key  color="white" />
+            <Key color="white" />
             <input
               type={isShowPassword ? "text" : "password"}
               placeholder="Password"
@@ -100,14 +103,17 @@ const Register = () => {
             type="submit"
             className="mt-8 cursor-pointer w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
           >
-            {loading ? "Loading..." : "Sign Up"}
+            {loading ? (
+              <div className="flex justify-center items-center ml-auto mr-auto gap-2">
+                <Loader className="animate-spin" />
+              </div>
+            ) : (
+              "Sign Up"
+            )}
           </button>
           <p className="text-white/90 text-sm mt-4">
             Already have an account?{" "}
-            <a
-              className="text-indigo-400 hover:underline"
-              href={paths.login}
-            >
+            <a className="text-indigo-400 hover:underline" href={paths.login}>
               Sign in
             </a>
           </p>

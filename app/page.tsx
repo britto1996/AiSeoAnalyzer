@@ -9,7 +9,7 @@ import Pricing from "./components/Pricing";
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [sideMenus, setSideMenus] = useState(SideBarList)
+  const [sideMenus] = useState(SideBarList)
   return (
     <AppProvider>
       <section className="min-h-screen bg-indigo-900">

@@ -4,13 +4,14 @@ import { Bell, PanelLeft, PanelLeftClose, Plus } from "lucide-react";
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import SignInButton from "../SignInButton";
+import Profile from "../Profile";
 
 const SideBar = ({
   sideMenus,
   isDrawerOpen,
   setIsDrawerOpen,
 }: {
-  sideMenus: any[];
+  sideMenus: { path: string; icon: React.ReactNode; title: string }[];
   isDrawerOpen: boolean;
   setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -19,11 +20,11 @@ const SideBar = ({
   const [isPathActive, setIsPathActive] = useState(pathname);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isNotificationHover, setIsNotificationHover] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated] = useState(false);
 
   const isSignedIn = () => {
     router.push("/login");
-  }
+  };
 
   return (
     <div className="flex-col gap-2 fixed top-0 text-white text-center items-center justify-center m-auto hidden sm:flex">
@@ -61,7 +62,7 @@ const SideBar = ({
                 setIsPathActive(menu.path);
                 router.push(menu.path);
               }}
-              className={`${isPathActive === menu.path ? "bg-gray-700 shadow-lg" : "bg-transparent"} cursor-pointer ${isPathActive !== menu.path && "hover:bg-gray-700"} text-white font-bold px-4 py-2 rounded-l-2xl rounded-r-2xl items-center justify-center`}
+              className={`${isPathActive === menu.path ? "bg-linear-to-r from-green-700 to-blue-900 shadow-lg" : "bg-transparent"} cursor-pointer ${isPathActive !== menu.path && "hover:bg-linear-to-r hover:from-green-700 hover:to-blue-900"} text-white font-bold px-4 py-2 rounded-l-2xl rounded-r-2xl items-center justify-center`}
             >
               <div className="flex flex-col items-center justify-center">
                 {menu.icon}
@@ -79,20 +80,20 @@ const SideBar = ({
             onMouseEnter={() => setIsNotificationHover(true)}
             onMouseLeave={() => setIsNotificationHover(false)}
             onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-            className={`${isNotificationOpen ? "bg-gray-700 shadow-lg" : "bg-transparent"} cursor-pointer ${!isNotificationOpen && "hover:bg-gray-700"} text-white font-bold px-4 py-2 rounded-l-2xl rounded-r-2xl items-center justify-center`}
+            className={`${isNotificationOpen ? "bg-linear-to-r from-green-700 to-blue-900 shadow-lg" : "bg-transparent"} cursor-pointer ${!isNotificationOpen && "hover:bg-linear-to-r hover:from-green-700 hover:to-blue-900"} text-white font-bold px-4 py-2 rounded-l-2xl rounded-r-2xl items-center justify-center`}
           >
             <div className="flex flex-col items-center justify-center">
               <Bell size={24} />
             </div>
           </button>
           {isNotificationHover && (
-            <div className="bottom-12 ml-2 mr-2 absolute text-white text-xs bg-gray-700 px-2 py-1 rounded-md shadow-lg">
-              <p>Notifications</p>
+            <div className="bottom-12 ml-2 mr-2 absolute text-white text-xs bg-linear-to-r from-green-700 to-blue-900 px-2 py-1 rounded-md shadow-lg">
+              <p className="hover:text-white">Notifications</p>
             </div>
           )}
         </div>
-        <div className="mt-2">
-          {isAuthenticated ? <></> : <SignInButton isSignedIn={isSignedIn} />}
+        <div className="mt-2 flex flex-col items-center justify-center gap-2">
+          {isAuthenticated ? <Profile avatar={"/passport_photo.jpeg"} /> : <SignInButton isSignedIn={isSignedIn} />}
         </div>
       </div>
     </div>
