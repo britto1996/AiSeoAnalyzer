@@ -54,7 +54,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(() =>
     typeof window !== "undefined" ? localStorage.getItem("token") : null,
   );
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(
+    () => typeof window !== "undefined" ? !!localStorage.getItem("token") : false,
+  );
 
   const api = axios.create({
     baseURL: BACKEND_URL,
@@ -71,10 +73,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    if (!token) {
-      setLoading(false);
-      return;
-    }
+    if (!token) return;
     let cancelled = false;
     api.get("/api/auth/user").then(({ data }) => {
       if (cancelled) return;

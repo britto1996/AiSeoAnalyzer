@@ -1,8 +1,7 @@
-import React from 'react'
 import RankList from './RankList'
 import { Trash } from 'lucide-react';
 
-const SeoRankList = ({ seeMore, setSeeMore }: { seeMore: { prev: number; next: number }; setSeeMore: React.Dispatch<React.SetStateAction<{ prev: number; next: number }>> }) => {
+const SeoRankList = ({ seeMore }: { seeMore: { prev: number; next: number } }) => {
   return (
     <div className="text-amber-50 hidden flex-col sm:flex overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-sky-500 scrollbar-track-sky-100 h-[calc(100vh-250px)]">
         <span className="font-bold text-sm">Recent Rankings</span>

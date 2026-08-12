@@ -6,7 +6,6 @@ import { paths } from "@/app/constants/paths";
 import { useState } from "react";
 import { useApp } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -24,7 +23,6 @@ const Login = () => {
       setLoading(false);
       router.replace(paths.home);
     } else {
-      toast.error(result?.message || "Login failed");
       setLoading(false);
     }
     setLoading(false);
