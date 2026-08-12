@@ -22,7 +22,7 @@ const Pricing = () => {
         </button>
       </div>
       <div className="mt-10 text-start flex justify-start items-start">
-        <SeoRankList seeMore={seeMore} setSeeMore={setSeeMore} />
+        <SeoRankList seeMore={seeMore} />
       </div>
       {RankList.length > seeMore.next && (
         <div className="flex justify-center relative mt-auto">
