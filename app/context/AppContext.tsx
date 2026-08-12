@@ -88,7 +88,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
     return () => { cancelled = true; };
-  }, [token]);
+  }, [token,api]);
 
   const login = async (email: string, password: string) => {
     try {
